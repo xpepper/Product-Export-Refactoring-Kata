@@ -135,12 +135,15 @@ public class XMLExporter {
     }
 
     public static String exportHistory(Collection<Order> orders) {
+        return exportHistory(orders, new Date());
+    }
+
+    protected static String exportHistory(Collection<Order> orders, Date historyDate) {
         StringBuilder xml = new StringBuilder();
         xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         xml.append("<orderHistory");
         xml.append(" createdAt='");
-        Date now = new Date();
-        xml.append(Util.toIsoDate(now));
+        xml.append(Util.toIsoDate(historyDate));
         xml.append("'");
         xml.append(">");
         for (Order order : orders) {
@@ -160,10 +163,10 @@ public class XMLExporter {
                 xml.append(product.getName());
                 xml.append("</product>");
             }
-            
+
             xml.append("</order>");
         }
-        
+
         xml.append("</orderHistory>");
         return xml.toString();
     }

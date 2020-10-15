@@ -3,6 +3,8 @@ package codingdojo;
 import org.approvaltests.Approvals;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static codingdojo.SampleModelObjects.*;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
@@ -69,5 +71,13 @@ public class XMLExporterTest {
         String xmlStore = XMLExporter.exportStore(FlagshipStore);
 
         Approvals.verifyXml(xmlStore);
+    }
+
+    @Test
+    public void export_history_no_orders() {
+        Date historyDate = Util.fromIsoDate("2017-09-01T00:00Z");
+        String result = XMLExporter.exportHistory(emptyList(), historyDate);
+
+        Approvals.verifyXml(result);
     }
 }
