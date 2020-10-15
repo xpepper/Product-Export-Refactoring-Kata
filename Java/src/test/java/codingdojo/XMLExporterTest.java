@@ -4,12 +4,15 @@ import org.approvaltests.Approvals;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.List;
 
 import static codingdojo.SampleModelObjects.*;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
 public class XMLExporterTest {
+
+    public static final Date HISTORY_DATE = Util.fromIsoDate("2017-09-01T00:00Z");
 
     @Test
     public void export_no_orders() {
@@ -75,8 +78,15 @@ public class XMLExporterTest {
 
     @Test
     public void export_history_no_orders() {
-        Date historyDate = Util.fromIsoDate("2017-09-01T00:00Z");
-        String result = XMLExporter.exportHistory(emptyList(), historyDate);
+        String result = XMLExporter.exportHistory(emptyList(), HISTORY_DATE);
+
+        Approvals.verifyXml(result);
+    }
+
+    @Test
+    public void export_history_with_one_order() {
+        List<Order> orders = singletonList(RecentOrder);
+        String result = XMLExporter.exportHistory(orders, HISTORY_DATE);
 
         Approvals.verifyXml(result);
     }
