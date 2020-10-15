@@ -12,7 +12,7 @@ public class XMLExporterTest {
     @Test
     public void export_no_orders() {
         String result = XMLExporter.exportFull(emptyList());
-        Approvals.verify(result);
+        Approvals.verifyXml(result);
     }
 
     @Test
