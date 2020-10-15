@@ -32,5 +32,17 @@ public class XMLExporterTest {
         Approvals.verifyXml(result);
     }
 
+    @Test
+    public void export_tax_details_no_orders() {
+        String result = XMLExporter.exportTaxDetails(emptyList());
 
+        Approvals.verifyXml(result);
+    }
+
+    @Test
+    public void export_tax_details_with_one_order() {
+        String result = XMLExporter.exportTaxDetails(singletonList(RecentOrder));
+
+        Approvals.verifyXml(result);
+    }
 }
