@@ -54,4 +54,13 @@ public class XMLExporterTest {
 
         Approvals.verifyXml(result);
     }
+
+    @Test
+    public void export_tax_details_with_one_order_created_before_2018() {
+        Product noEventProduct = CherryBloom;
+        Order order = new Order("anyId", Util.fromIsoDate("2017-09-01T00:00Z"), FlagshipStore, new Product[]{noEventProduct});
+        String result = XMLExporter.exportTaxDetails(singletonList(order));
+
+        Approvals.verifyXml(result);
+    }
 }
