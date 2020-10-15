@@ -63,4 +63,11 @@ public class XMLExporterTest {
 
         Approvals.verifyXml(result);
     }
+
+    @Test
+    public void export_store() {
+        String xmlStore = XMLExporter.exportStore(FlagshipStore);
+
+        Approvals.verifyXml(xmlStore);
+    }
 }
