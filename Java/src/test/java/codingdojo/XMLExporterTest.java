@@ -61,6 +61,14 @@ public class XMLExporterTest {
     }
 
     @Test
+    public void export_tax_details_with_one_order_containing_just_one_product_with_a_price_with_invalid_currency_code() {
+        Product noEventProduct = new Product("Cherry Bloom", "LIPSTICK01", 30, new Price(14.99D, "EUR"));
+        Order order = new Order("anyId", Util.fromIsoDate("2018-09-01T00:00Z"), FlagshipStore, new Product[]{noEventProduct});
+
+        Approvals.verifyException(() -> XMLExporter.exportTaxDetails(singletonList(order)));
+    }
+
+    @Test
     public void export_tax_details_with_one_order_created_before_2018() {
         Product noEventProduct = CherryBloom;
         Order order = new Order("anyId", Util.fromIsoDate("2017-09-01T00:00Z"), FlagshipStore, new Product[]{noEventProduct});
