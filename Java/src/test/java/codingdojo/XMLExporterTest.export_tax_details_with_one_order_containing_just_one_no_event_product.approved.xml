@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><orderTax>
+  <order date="2018-09-01T00:00Z">
+    <product id="LIPSTICK01">Cherry Bloom</product>
+    <orderTax currency="USD">22.62</orderTax>
+  </order>
+  22.62
+</orderTax>
